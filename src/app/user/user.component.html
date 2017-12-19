@@ -1,0 +1,22 @@
+<div class="container" *ngIf="usersList">
+  <table class="table">
+    <thead class="h">
+      <tr class="h">
+        <th class="h">First name</th>
+        <th class="h">Last name</th>
+        <th class="h">Email</th>
+        <th class="h">Username</th>
+        <th class="h">Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="user" (dblclick)="editUser(user)" *ngFor="let user of usersList">
+        <td>{{user.firstname}}</td>
+        <td>{{user.lastname}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.role}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
