@@ -9,7 +9,7 @@ import { ActivatedRoute, ParamMap, Router } from "@angular/router";
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  title = 'app';
+  title = 'Available List of Users';
   createNew: boolean = false;
 
   constructor(
