@@ -1,4 +1,8 @@
 <div class="container" *ngIf="usersList">
+  <button class="btn btn-primary" (click)="create()">Add new user</button>
+  <div *ngIf='createNew'>
+    <app-user-form (cancelUser)='cancel()' [user]='newUser' (submitUser)='submitUser($event)'></app-user-form>
+  </div>
   <table class="table">
     <thead class="h">
       <tr class="h">
