@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { User } from '../../models/user.model';
+import { validationService } from '../../services/validationService';
 
 @Component({
   selector: 'app-user-form',
@@ -20,19 +21,19 @@ export class UserFormComponent implements OnInit {
   @Input()
   user: User;
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
   userForm = new FormGroup({
     firstname: new FormControl('', [Validators.required]),
     lastname: new FormControl('', [Validators.required]),
-    username: new FormControl('', [Validators.required]),
+    username: new FormControl('', [Validators.required], [this.validationService.isUniqueByObservable]),
     email: new FormControl('', [Validators.required]),
     role: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
-    });
+  });
+
+  constructor(private validationService: validationService) { }
+
+  ngOnInit() {
+  }
 
   get firstname() {
     return this.userForm.get('firstname');
@@ -61,7 +62,7 @@ export class UserFormComponent implements OnInit {
   submit() {
     this.submitUser.emit(this.user);
   }
-  
+
   cancel() {
     this.cancelUser.emit(this.user);
   }
