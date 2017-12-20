@@ -96,6 +96,7 @@ export class UserComponent implements OnInit {
 
   cancel() {
     this.createNew = false;
+    this.editMode = false;
   }
 
 }
