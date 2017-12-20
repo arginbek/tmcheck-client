@@ -11,6 +11,8 @@
             <input formControlName="email" type="text" id="email" [(ngModel)]='user.email' class="form-control">
             <label for="role">Role: </label>
             <input formControlName="role" type="text" id="role" [(ngModel)]='user.role' class="form-control">
+            <label for="password">Password: </label>
+            <input formControlName="password" type="password" id="password" [(ngModel)]='user.password' class="form-control">
             <div class="alert alert-danger" *ngIf="username.touched && !username.valid">
                 <div *ngIf="username.errors.required || !username.errors?.isUnique" class="alert alert-danger">
                     Username is required and should be unique

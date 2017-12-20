@@ -30,8 +30,9 @@ export class UserFormComponent implements OnInit {
     lastname: new FormControl('', [Validators.required]),
     username: new FormControl('', [Validators.required]),
     email: new FormControl(),
-    role: new FormControl()
-  });
+    role: new FormControl(),
+    password: new FormControl()
+    });
 
   get firstname() {
     return this.userForm.get('firstname');
@@ -51,6 +52,10 @@ export class UserFormComponent implements OnInit {
 
   get role() {
     return this.userForm.get('role');
+  }
+
+  get password() {
+    return this.userForm.get('password');
   }
 
   submit() {

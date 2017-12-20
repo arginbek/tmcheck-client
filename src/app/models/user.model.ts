@@ -5,6 +5,7 @@ export class User {
     email: string;
     username: string;
     role: string;
+    password: string;
 
     constructor() {
         this.firstname = 'first-name';
@@ -12,5 +13,6 @@ export class User {
         this.email = 'email';
         this.username = 'user-name';
         this.role = 'staff';
+        this.password ='pass';
     }
 }

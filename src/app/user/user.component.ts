@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user.model';
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+import { HttpErrorResponse } from '@angular/common/http/src/response';
 
 @Component({
   selector: 'app-user',
@@ -19,7 +20,7 @@ export class UserComponent implements OnInit {
     private router: Router
   ) { }
 
-  public newUser: User = new User();
+  public newUser: User;
 
   usersList: User[];
   editUsers: User[] = [];
@@ -43,8 +44,14 @@ export class UserComponent implements OnInit {
     this.userService.createUser(this.newUser)
       .subscribe((res) => {
         this.usersList.push(res.data);
-        //this.newUser = new User();
         console.log(res.data);
+        (err: HttpErrorResponse) => {
+          if (err.error instanceof Error) {
+            console.log('Error is from Cliet --'+err.error.message);
+          }else{
+            console.log('Error is from server--'+err.message);
+          }
+        }
       });
   }
 
@@ -75,7 +82,6 @@ export class UserComponent implements OnInit {
       this.editMode = false;
     }
     else {
-      //this.create();
       this.submitNewUser();
     }
     this.newUser = null;
