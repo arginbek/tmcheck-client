@@ -7,10 +7,10 @@ export class User {
     role: string;
 
     constructor() {
-        this.firstname = '';
-        this.lastname = '';
-        this.email = '';
-        this.username = '';
-        this.role = '';
+        this.firstname = 'first-name';
+        this.lastname = 'last-name';
+        this.email = 'email';
+        this.username = 'user-name';
+        this.role = 'staff';
     }
 }

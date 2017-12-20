@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user.model';
+import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 
 @Component({
   selector: 'app-user',
@@ -8,10 +9,13 @@ import { User } from '../models/user.model';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  title = 'app';
+  title = 'Available List of Users';
+  createNew: boolean = false;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   public newUser: User = new User();
@@ -29,6 +33,7 @@ export class UserComponent implements OnInit {
 
 
   create() {
+    this.createNew = true;
     this.userService.createUser(this.newUser)
       .subscribe((res) => {
         this.usersList.push(res.data);
@@ -37,6 +42,8 @@ export class UserComponent implements OnInit {
   }
 
   editUser(user: User) {
+    this.newUser = user;
+    this.createNew = true;
     console.log(user);
     if (this.usersList.includes(user)) {
       if (!this.editUsers.includes(user)) {
@@ -53,10 +60,11 @@ export class UserComponent implements OnInit {
     }
   }
 
-  submitUser(event, user: User) {
-    if (event.keyCode === 13) {
-      this.editUser(user);
-    }
+  submitUser(user: User) {
+    console.log("am here");
+    this.editUser(user);
+    this.newUser = null;
+    this.createNew = false;
   }
 
   deleteUser(user: User) {
@@ -64,5 +72,10 @@ export class UserComponent implements OnInit {
       this.usersList.splice(this.usersList.indexOf(user), 1);
     });
   }
+
+  cancel() {
+    this.createNew = false;
+  }
+
 }
 

@@ -1,21 +1,38 @@
 <div class="container" *ngIf="usersList">
+  <button class="btn btn-primary" (click)="create()">Add new user</button>
+  <div *ngIf='createNew'>
+    <app-user-form (cancelUser)='cancel()' [user]='newUser' (submitUser)='submitUser($event)'></app-user-form>
+  </div>
+  <h4>{{title}}</h4>
   <table class="table">
     <thead class="h">
       <tr class="h">
+        <th class="h">#</th>
         <th class="h">First name</th>
         <th class="h">Last name</th>
         <th class="h">Email</th>
         <th class="h">Username</th>
         <th class="h">Role</th>
+        <th class="h">Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr class="user" (dblclick)="editUser(user)" *ngFor="let user of usersList">
+      <tr class="user" (dblclick)="editUser(user)" *ngFor="let user of usersList,let i=index">
+        <td>{{i+1}}</td>
         <td>{{user.firstname}}</td>
         <td>{{user.lastname}}</td>
         <td>{{user.email}}</td>
         <td>{{user.username}}</td>
         <td>{{user.role}}</td>
+        <td>
+          <a routerLink="/#" routerLinkActive="active">Appointements</a>
+          <button class="btn btn-primary" (click)="editUser(user)">
+            <i class="fa fa-pencil"></i>
+          </button>
+          <button class="btn btn-danger" (click)="deleteUser(user)">
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>

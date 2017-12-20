@@ -1,5 +1,5 @@
-import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -14,6 +14,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { AuthenticationService } from './services/authentication.service';
 import { AlertService } from './services/alert.service';
 import { HomeComponent } from './home/home.component';
+import { UserFormComponent } from './user/user-form/user-form.component';
 
 const appRoutes: Routes = [
   {
@@ -33,6 +34,10 @@ const appRoutes: Routes = [
     path: '',
     redirectTo: '/users',
     pathMatch: 'full'
+  },
+  {
+    path: 'users/add',
+    component: UserFormComponent
   }
 ];
 
@@ -42,12 +47,14 @@ const appRoutes: Routes = [
     UserComponent,
     LoginComponent,
     AlertComponent,
-    HomeComponent
+    HomeComponent,
+    UserFormComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
