@@ -11,6 +11,7 @@ import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 export class UserComponent implements OnInit {
   title = 'Available List of Users';
   createNew: boolean = false;
+  editMode: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -34,16 +35,23 @@ export class UserComponent implements OnInit {
 
   create() {
     this.createNew = true;
+    this.newUser = new User();
+  }
+
+  submitNewUser() {
+    console.log(this.newUser)
     this.userService.createUser(this.newUser)
       .subscribe((res) => {
         this.usersList.push(res.data);
-        this.newUser = new User();
+        //this.newUser = new User();
+        console.log(res.data);
       });
   }
 
   editUser(user: User) {
     this.newUser = user;
     this.createNew = true;
+    this.editMode = true;
     console.log(user);
     if (this.usersList.includes(user)) {
       if (!this.editUsers.includes(user)) {
@@ -62,7 +70,14 @@ export class UserComponent implements OnInit {
 
   submitUser(user: User) {
     console.log("am here");
-    this.editUser(user);
+    if (this.editMode) {
+      this.editUser(user);
+      this.editMode = false;
+    }
+    else {
+      //this.create();
+      this.submitNewUser();
+    }
     this.newUser = null;
     this.createNew = false;
   }
