@@ -18,6 +18,8 @@ import { UserFormComponent } from './user/user-form/user-form.component';
 import { UserGuard } from './guards/user.guard';
 import { RegisterComponent } from './register/register.component';
 import { validationService } from './services/validationService';
+import { UserAppointmentsComponent } from './user-appointments/user-appointments.component';
+import { MakeAppointmentComponent } from './make-appointment/make-appointment.component';
 
 const appRoutes: Routes = [
   {
@@ -56,7 +58,9 @@ const appRoutes: Routes = [
     AlertComponent,
     HomeComponent,
     UserFormComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserAppointmentsComponent,
+    MakeAppointmentComponent
   ],
   imports: [
     BrowserModule,
