@@ -8,11 +8,11 @@ export class User {
     password: string;
 
     constructor() {
-        this.firstname = 'first-name';
-        this.lastname = 'last-name';
-        this.email = 'email';
-        this.username = 'user-name';
-        this.role = 'staff';
-        this.password ='pass';
+        this.firstname = '';
+        this.lastname = '';
+        this.email = '';
+        this.username = '';
+        this.role = '';
+        this.password = '';
     }
 }

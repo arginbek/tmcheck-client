@@ -1,3 +1,20 @@
 <p>
   Welcome to your home!
 </p>
+<div *ngIf="isAdmin()">
+  <nav>
+    <a routerLink="/users" routerLinkActive="active">See Users</a>
+  </nav>
+</div>
+<div *ngIf="isCustomer()">
+  <nav>
+    <a routerLink="/myappoitments" routerLinkActive="active">See Your Appointments</a>
+    <br/>
+    <a routerLink="/makeappointment" routerLinkActive="active">Make an appointment</a>
+  </nav>
+</div>
+<div *ngIf="isCounselor()">
+  <nav>
+    <a routerLink="/createsession" routerLinkActive="active">Create a session</a>
+  </nav>
+</div>
