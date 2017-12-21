@@ -22,6 +22,9 @@ import { MakeAppointmentComponent } from './make-appointment/make-appointment.co
 import { CreateSessionComponent } from './create-session/create-session.component';
 import { ValidationService } from './services/validation.service';
 import { AppointmentService } from './services/appointment.service';
+import { SessionService } from './services/session.service';
+ 
+
 
 const appRoutes: Routes = [
   {
@@ -83,11 +86,12 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
+  
   ],
   providers: [
     UserService, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     AuthGuard, AuthenticationService, AlertService, UserGuard, AuthenticationService,
-    AlertService, ValidationService, AppointmentService
+    AlertService, ValidationService, AppointmentService, SessionService
   ],
   bootstrap: [AppComponent]
 })
