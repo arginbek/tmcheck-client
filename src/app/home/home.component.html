@@ -8,12 +8,12 @@
 </div>
 <div *ngIf="isCustomer()">
   <nav>
-    <a routerLink="/appointments" routerLinkActive="active">See Your Appointments</a>
-    <a routerLink="/doappointment" routerLinkActive="active">Make an appointment</a>
+    <a routerLink="/myappoitments" routerLinkActive="active">See Your Appointments</a>
+    <a routerLink="/makeappointment" routerLinkActive="active">Make an appointment</a>
   </nav>
 </div>
 <div *ngIf="isCounselor()">
   <nav>
-    <a routerLink="/appointments" routerLinkActive="active">Manage Your Sessions</a>
+    <a routerLink="/createsession" routerLinkActive="active">Create a session</a>
   </nav>
 </div>
