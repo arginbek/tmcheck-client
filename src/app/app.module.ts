@@ -20,6 +20,7 @@ import { RegisterComponent } from './register/register.component';
 import { UserAppointmentsComponent } from './user-appointments/user-appointments.component';
 import { MakeAppointmentComponent } from './make-appointment/make-appointment.component';
 import { CreateSessionComponent } from './create-session/create-session.component';
+import { ValidationService } from './services/validation.service';
 
 const appRoutes: Routes = [
   {
@@ -84,7 +85,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     UserService, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    AuthGuard, AuthenticationService, AlertService, UserGuard, AuthenticationService, AlertService, validationService
+    AuthGuard, AuthenticationService, AlertService, UserGuard, AuthenticationService, AlertService,ValidationService
   ],
   bootstrap: [AppComponent]
 })
