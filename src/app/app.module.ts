@@ -17,6 +17,7 @@ import { HomeComponent } from './home/home.component';
 import { UserFormComponent } from './user/user-form/user-form.component';
 import { UserGuard } from './guards/user.guard';
 import { RegisterComponent } from './register/register.component';
+import { validationService } from './services/validationService';
 
 const appRoutes: Routes = [
   {
@@ -66,7 +67,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     UserService, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    AuthGuard, AuthenticationService, AlertService, UserGuard
+    AuthGuard, AuthenticationService, AlertService, UserGuard, AuthenticationService, AlertService, validationService
   ],
   bootstrap: [AppComponent]
 })

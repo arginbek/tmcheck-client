@@ -3,6 +3,7 @@ import { UserService } from '../services/user.service';
 import { User } from '../models/user.model';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http/src/response';
+import {validationService} from '../services/validationService';
 
 @Component({
   selector: 'app-user',
@@ -13,17 +14,15 @@ export class UserComponent implements OnInit {
   title = 'Available List of Users';
   createNew: boolean = false;
   editMode: boolean = false;
-
+  public newUser: User;
+  usersList: User[];
+  editUsers: User[] = [];
+  oldUser: User;
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
-
-  public newUser: User;
-
-  usersList: User[];
-  editUsers: User[] = [];
 
   ngOnInit(): void {
     this.userService.getUsers()
@@ -47,9 +46,9 @@ export class UserComponent implements OnInit {
         console.log(res.data);
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
-            console.log('Error is from Cliet --'+err.error.message);
-          }else{
-            console.log('Error is from server--'+err.message);
+            console.log('Error is from Cliet --' + err.error.message);
+          } else {
+            console.log('Error is from server--' + err.message);
           }
         }
       });
@@ -57,6 +56,7 @@ export class UserComponent implements OnInit {
 
   editUser(user: User) {
     this.newUser = user;
+  
     this.createNew = true;
     this.editMode = true;
     console.log(user);
@@ -86,6 +86,15 @@ export class UserComponent implements OnInit {
     this.createNew = false;
   }
 
+  initializeOldUser(user:User){
+    this.oldUser = new User();
+    this.oldUser._id = user._id;
+    this.oldUser.firstname = user.firstname;
+    this.oldUser.lastname = user.lastname;
+    this.oldUser.email = user.email;
+    this.oldUser.password = user.password;
+  }
+
   deleteUser(user: User) {
     this.userService.deleteUser(user._id).subscribe(res => {
       this.usersList.splice(this.usersList.indexOf(user), 1);
@@ -94,6 +103,11 @@ export class UserComponent implements OnInit {
 
   cancel() {
     this.createNew = false;
+    this.editMode = false;
+    this.newUser = this.oldUser;
+    if(this.editMode){
+      this.submitUser(this.newUser);
+    }
   }
 
 }

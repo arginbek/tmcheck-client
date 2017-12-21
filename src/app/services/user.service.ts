@@ -43,6 +43,14 @@ export class UserService {
     });
   }
 
+  findUserByUsername(username: string): any {
+    const usernameUrl = `${this.userUrl}/${username}`;
+    return this.http.get(usernameUrl)
+    .map(res  => {
+      return res['data'].docs as User[];
+    });
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
