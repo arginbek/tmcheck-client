@@ -15,6 +15,8 @@ import { AuthenticationService } from './services/authentication.service';
 import { AlertService } from './services/alert.service';
 import { HomeComponent } from './home/home.component';
 import { UserFormComponent } from './user/user-form/user-form.component';
+import { UserGuard } from './guards/user.guard';
+import { RegisterComponent } from './register/register.component';
 
 const appRoutes: Routes = [
   {
@@ -22,12 +24,16 @@ const appRoutes: Routes = [
     component: HomeComponent, canActivate: [AuthGuard]
   },
   {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
     path: 'login',
     component: LoginComponent,
   },
   {
     path: 'users',
-    component: UserComponent,
+    component: UserComponent, canActivate: [UserGuard],
     data: { title: 'Users List' }
   },
   {
@@ -48,7 +54,8 @@ const appRoutes: Routes = [
     LoginComponent,
     AlertComponent,
     HomeComponent,
-    UserFormComponent
+    UserFormComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +66,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     UserService, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    AuthGuard, AuthenticationService, AlertService
+    AuthGuard, AuthenticationService, AlertService, UserGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user.model';
-import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http/src/response';
 
 @Component({
@@ -76,12 +76,10 @@ export class UserComponent implements OnInit {
   }
 
   submitUser(user: User) {
-    console.log("am here");
     if (this.editMode) {
       this.editUser(user);
       this.editMode = false;
-    }
-    else {
+    } else {
       this.submitNewUser();
     }
     this.newUser = null;

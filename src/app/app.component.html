@@ -1,3 +1,6 @@
+<div *ngIf="loggedIn()" class="page-header">
+    <button (click)="logout()" class="btn btn-primary">Logout</button>
+</div>
 <div class="cont">
   <router-outlet></router-outlet>
 </div>
