@@ -1,3 +1,25 @@
-<p>
-  user-appointments works!
-</p>
+<div class="container" *ngIf="appointmenList">
+    <h4>{{title}}</h4>
+    <table class="table">
+      <thead class="h">
+        <tr class="h">
+          <th class="h">#</th>
+          <th class="h">Date</th>
+          <th class="h">Start Time</th>
+          <th class="h">Customer</th>
+          <th class="h">Location</th>
+          <th class="h">Counselor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="user" *ngFor="let appment of appointmenList,let i=index">
+          <td>{{i+1}}</td>
+          <td>{{appment.date}}</td>
+          <td>{{appment.startTime}}</td>
+          <td>{{appment?.customer}}</td>
+          <td>{{appment.location}}</td>
+          <td>{{appment.counselor}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

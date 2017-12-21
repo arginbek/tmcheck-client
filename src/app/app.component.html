@@ -1,5 +1,8 @@
 <div *ngIf="loggedIn()" class="page-header">
     <button (click)="logout()" class="btn btn-primary">Logout</button>
+    <nav>
+        <a routerLink="/" routerLinkActive="active">Home</a>
+    </nav>
 </div>
 <div class="cont">
   <router-outlet></router-outlet>
