@@ -20,11 +20,24 @@ import { RegisterComponent } from './register/register.component';
 import { validationService } from './services/validationService';
 import { UserAppointmentsComponent } from './user-appointments/user-appointments.component';
 import { MakeAppointmentComponent } from './make-appointment/make-appointment.component';
+import { CreateSessionComponent } from './create-session/create-session.component';
 
 const appRoutes: Routes = [
   {
     path: '',
     component: HomeComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'createsession',
+    component: CreateSessionComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'makeappointment',
+    component: MakeAppointmentComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'myappoitments',
+    component: UserAppointmentsComponent, canActivate: [AuthGuard]
   },
   {
     path: 'register',
@@ -60,7 +73,8 @@ const appRoutes: Routes = [
     UserFormComponent,
     RegisterComponent,
     UserAppointmentsComponent,
-    MakeAppointmentComponent
+    MakeAppointmentComponent,
+    CreateSessionComponent
   ],
   imports: [
     BrowserModule,
