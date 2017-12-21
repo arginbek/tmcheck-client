@@ -3,11 +3,12 @@ import { Observable } from 'rxjs/Rx';
 import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
 import { User } from '../models/user.model';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
-export class validationService {
+export class ValidationService {
 
-    constructor(private userService: UserService) { }
+    constructor(private userService: UserService,private http:HttpClient) {}
 
     cannotContainSpace(control: AbstractControl): ValidationErrors | null {
         if ((control.value as string).indexOf(' ') >= 0) {
