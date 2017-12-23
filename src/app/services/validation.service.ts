@@ -8,7 +8,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 @Injectable()
 export class ValidationService {
 
-    constructor(private userService: UserService,private http:HttpClient) {}
+    constructor(private userService: UserService, private http: HttpClient) {}
 
     cannotContainSpace(control: AbstractControl): ValidationErrors | null {
         if ((control.value as string).indexOf(' ') >= 0) {

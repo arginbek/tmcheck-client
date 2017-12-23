@@ -23,8 +23,8 @@ import { CreateSessionComponent } from './create-session/create-session.componen
 import { ValidationService } from './services/validation.service';
 import { AppointmentService } from './services/appointment.service';
 import { SessionService } from './services/session.service';
- 
-
+import { MyappointmentsGuard } from './guards/myappointments.guard';
+import { MakeappointmentGuard } from './guards/makeappointment.guard';
 
 const appRoutes: Routes = [
   {
@@ -37,11 +37,11 @@ const appRoutes: Routes = [
   },
   {
     path: 'makeappointment',
-    component: MakeAppointmentComponent, canActivate: [AuthGuard]
+    component: MakeAppointmentComponent, canActivate: [AuthGuard, MakeappointmentGuard]
   },
   {
     path: 'myappoitments',
-    component: UserAppointmentsComponent, canActivate: [AuthGuard]
+    component: UserAppointmentsComponent, canActivate: [AuthGuard, MyappointmentsGuard]
   },
   {
     path: 'register',
@@ -86,12 +86,11 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
-  
   ],
   providers: [
     UserService, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     AuthGuard, AuthenticationService, AlertService, UserGuard, AuthenticationService,
-    AlertService, ValidationService, AppointmentService, SessionService
+    AlertService, ValidationService, AppointmentService, SessionService, MyappointmentsGuard, MakeappointmentGuard
   ],
   bootstrap: [AppComponent]
 })

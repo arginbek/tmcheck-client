@@ -1,5 +1,7 @@
 <p>
-  Welcome to your home!
+  Welcome <span class="h6">{{username}}!</span>
+  <br> You role:
+  <span class="h6">{{role}}</span>
 </p>
 <div *ngIf="isAdmin()">
   <nav>
@@ -15,6 +17,8 @@
 </div>
 <div *ngIf="isCounselor()">
   <nav>
+    <a routerLink="/myappoitments" routerLinkActive="active">See Your Appointments</a>
+    <br/>
     <a routerLink="/createsession" routerLinkActive="active">Create a session</a>
   </nav>
 </div>

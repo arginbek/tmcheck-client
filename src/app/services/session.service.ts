@@ -1,5 +1,5 @@
 import {Appointment} from '../models/appointment.model';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {Response} from '@angular/http';
 import { Injectable } from '@angular/core';
@@ -21,7 +21,7 @@ export class SessionService {
     console.log(appointment);
     return this.http.post(`${this.sessionUrl}`, appointment);
   }
- 
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);

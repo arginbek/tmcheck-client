@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   role: String = '';
+  username: String = '';
 
   constructor() { }
 
@@ -14,6 +15,7 @@ export class HomeComponent implements OnInit {
     const currentUser = JSON.parse(localStorage.getItem('token'));
     if (currentUser) {
       this.role = currentUser.role;
+      this.username = currentUser.username;
     }
   }
 
